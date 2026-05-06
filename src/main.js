@@ -12,6 +12,7 @@ import {
   buttonLoadMore,
   scrolling,
 } from './js/render-functions';
+
 const form = document.querySelector('.form');
 let page = 1;
 let per_page = 15;

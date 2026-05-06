@@ -120,6 +120,9 @@ button.gallery-button {
   position: relative;
   display: flex;
 }
+.loader.hidden {
+  display: none;
+}
 .loader:before,
 .loader:after {
   content: '';

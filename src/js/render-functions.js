@@ -2,6 +2,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 const list = document.querySelector('.gallery');
 export const buttonLoadMore = document.querySelector('.hidden');
+const loader = document.querySelector('.loader');
 let gallery = new SimpleLightbox('.gallery a', {
   captions: true,
   captionPosition: 'bottom',
@@ -46,11 +47,10 @@ export function clearGallery() {
   list.innerHTML = ``;
 }
 export function showLoader() {
-  buttonLoadMore.insertAdjacentHTML('afterend', `<span class="loader"></span>`);
+  loader.classList.remove('hidden');
 }
 export function hideLoader() {
-  const span = document.querySelector('.loader');
-  if (span) span.remove();
+  loader.classList.add('hidden');
 }
 export function showLoadMoreButton() {
   buttonLoadMore.classList.add('gallery-button');
