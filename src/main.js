@@ -24,12 +24,12 @@ async function hendleSubmit(event) {
     event.preventDefault();
     clearGallery();
     hideLoadMoreButton();
-    query = event.currentTarget.elements['search-text'].value
-      .toLowerCase()
-      .trim();
-    event.currentTarget.elements['search-text'].value = '';
-    page = 1;
+    query = event.target.elements['search-text'].value.toLowerCase().trim();
+    if (!query) {
+      return;
+    }
     showLoader();
+    page = 1;
     const data = await getImagesByQuery(query, page);
     if (data.hits.length === 0) {
       iziToast.error({
@@ -47,17 +47,17 @@ async function hendleSubmit(event) {
       return;
     }
     if (page * per_page < data.totalHits) {
-      page += 1;
       createGallery(data.hits);
       showLoadMoreButton();
     } else {
       createGallery(data.hits);
-      return iziToast.info({
+      iziToast.info({
         message: `We're sorry, but you've reached the end of search results.`,
         position: 'topRight',
         messageSize: '16px',
       });
     }
+    event.target.elements['search-text'].value = '';
   } catch (error) {
     iziToast.error({
       iconUrl: imgErrorIcon,
@@ -79,10 +79,11 @@ async function hendleSubmit(event) {
 
 async function hendleClic() {
   try {
+    page += 1;
     showLoader();
+    hideLoadMoreButton();
     const data = await getImagesByQuery(query, page);
     if (page * per_page < data.totalHits) {
-      page += 1;
       createGallery(data.hits);
       scrolling();
       showLoadMoreButton();

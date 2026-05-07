@@ -57,10 +57,7 @@ form button {
 form button:hover {
   background-color: #6c8cff;
 }
-button.hidden {
-  display: none;
-}
-button.gallery-button {
+.gallery-button {
   font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
@@ -120,7 +117,7 @@ button.gallery-button {
   position: relative;
   display: flex;
 }
-.loader.hidden {
+.hidden {
   display: none;
 }
 .loader:before,
