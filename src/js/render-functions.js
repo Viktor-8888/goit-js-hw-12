@@ -1,7 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 const list = document.querySelector('.gallery');
-export const buttonLoadMore = document.querySelector('.gallery-button');
+const buttonLoadMore = document.querySelector('.gallery-button');
 const loader = document.querySelector('.loader');
 let gallery = new SimpleLightbox('.gallery a', {
   captions: true,
@@ -57,13 +57,4 @@ export function showLoadMoreButton() {
 }
 export function hideLoadMoreButton() {
   buttonLoadMore.classList.add('hidden');
-}
-export function scrolling() {
-  const li = list.querySelector('.gallery-item');
-  const { height } = li.getBoundingClientRect();
-  window.scrollBy({
-    top: height * 2,
-    left: 0,
-    behavior: 'smooth',
-  });
 }

@@ -9,14 +9,15 @@ import {
   hideLoader,
   showLoadMoreButton,
   hideLoadMoreButton,
-  buttonLoadMore,
-  scrolling,
 } from './js/render-functions';
 
 const form = document.querySelector('.form');
+const list = document.querySelector('.gallery');
+const buttonLoadMore = document.querySelector('.gallery-button');
 let page = 1;
 let per_page = 15;
 let query = '';
+
 form.addEventListener('submit', hendleSubmit);
 buttonLoadMore.addEventListener('click', hendleClic);
 async function hendleSubmit(event) {
@@ -75,6 +76,15 @@ async function hendleSubmit(event) {
   } finally {
     hideLoader();
   }
+}
+function scrolling() {
+  const li = list.querySelector('.gallery-item');
+  const { height } = li.getBoundingClientRect();
+  window.scrollBy({
+    top: height * 2,
+    left: 0,
+    behavior: 'smooth',
+  });
 }
 
 async function hendleClic() {
